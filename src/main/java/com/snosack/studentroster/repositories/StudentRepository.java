@@ -10,5 +10,6 @@ import com.snosack.studentroster.models.Student;
 @Repository
 public interface StudentRepository extends CrudRepository<Student, Long> {
 	List<Student> findAll();
+	List<Student> findByDormIdIs(Long dormId);
 
 }

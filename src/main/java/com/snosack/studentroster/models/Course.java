@@ -44,7 +44,7 @@ public class Course {
     
     @ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
-			name = "enrollments",
+			name = "courses_students",
 			joinColumns = @JoinColumn(name = "course_id"),
 			inverseJoinColumns = @JoinColumn(name = "student_id")
 	)

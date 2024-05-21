@@ -19,20 +19,18 @@ import jakarta.validation.constraints.Size;
 @Table(name="students")
 public class Student {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
-	@NotNull
-    @Size(min=3, max=60, message="Name must be at least 3 characters.")
-    private String name;
+	private String name;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "dorm_id")
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="dorm_id")
 	private Dorm dorm;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
-			name = "courses",
+			name = "courses_students",
 			joinColumns = @JoinColumn(name = "student_id"),
 			inverseJoinColumns = @JoinColumn(name = "course_id")
 	)

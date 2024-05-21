@@ -18,28 +18,16 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name="dorms")
 public class Dorm {
-	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
-    @NotNull
-    @Size(min=3, max=60, message="Name must be longer than 3 characters.")
-    private String name;
-    
-    @Column(updatable=false)
-    private Date createdAt;
-    private Date updatedAt;
-    
-    @PrePersist
-    protected void onCreate() {
-    	this.createdAt = new Date();
-    }
-    
-    @OneToMany(mappedBy="dorm", fetch=FetchType.LAZY)
-    private List<Student> students;
-    
-    public Dorm() {}
+	private String name;
+	
+	@OneToMany(mappedBy="dorm", fetch=FetchType.LAZY)
+	private List<Student> students;
+	
+	public Dorm() {}
 
 	public Long getId() {
 		return id;
@@ -57,22 +45,6 @@ public class Dorm {
 		this.name = name;
 	}
 
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-
 	public List<Student> getStudents() {
 		return students;
 	}
@@ -80,8 +52,4 @@ public class Dorm {
 	public void setStudents(List<Student> students) {
 		this.students = students;
 	}
-    
-    
-    
-
 }

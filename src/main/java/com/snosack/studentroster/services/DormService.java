@@ -11,14 +11,17 @@ import com.snosack.studentroster.repositories.DormRepository;
 
 @Service
 public class DormService {
-	@Autowired
-	DormRepository dormRepo;
+	private final DormRepository dormRepo;
+	
+	public DormService(DormRepository dormRepo) {
+		this.dormRepo = dormRepo;
+	}
 	
 	public List<Dorm> allDorms(){
 		return dormRepo.findAll();
 	}
 	
-	public Dorm createDorm(Dorm dorm) {
+	public Dorm addDorm(Dorm dorm) {
 		return dormRepo.save(dorm);
 	}
 	
@@ -26,9 +29,8 @@ public class DormService {
 		Optional<Dorm> optionalDorm = dormRepo.findById(id);
 		if(optionalDorm.isPresent()) {
 			return optionalDorm.get();
-		} else {
+		}else {
 			return null;
 		}
 	}
-
 }
